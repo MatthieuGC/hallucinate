@@ -2,8 +2,8 @@ module Hallucinate
   module Hallucinator
     def self.included(base)
       base.class_eval do
-        def method_missing(method_name, *args, &block)
-          AIResponseGenerator.new.generate_response(self.class.name, method_name, *args)
+        def method_missing(method_name, *args, **kargs, &block)
+          AIResponseGenerator.new.generate_response(self.class.name, method_name, *args, **kargs)
         end
 
         def respond_to_missing?(method_name, include_private = false)
